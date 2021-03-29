@@ -4,7 +4,7 @@ Fanaka is an online notes management system that aims to solve the problem of no
 
 ### `Technologies Used`
 
-For the backend we use:
+For the backend we use:\
 Graphql\
 Express\
 MongoDb
