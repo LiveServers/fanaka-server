@@ -3,10 +3,10 @@ import { v4 as uuidv4 } from 'uuid';
 import jwt from 'jsonwebtoken';
 import {UserInputError,ApolloError,AuthenticationError} from "apollo-server-express";
 import "dotenv/config";
-import StudentsModel from "../../models/Users/StudentModel";
+import UserModel from "../../models/Users/UserModel";
 import getUser from "../../auth";
 
-export class StudentsApi{
+export class UserApi{
 
     async signUp(args){
         const {
@@ -20,7 +20,7 @@ export class StudentsApi{
             }
         } = args;
         try{
-            const response = await StudentsModel.findOne({email:email});
+            const response = await UserModel.findOne({email:email});
         
             if(response){
               throw new UserInputError('Email already in use')
@@ -31,7 +31,7 @@ export class StudentsApi{
                 throw new UserInputError('Password length must be greater than 8 characters long');
             }
 
-             const newStudent = new StudentsModel({
+             const newUser = new UserModel({
                  _id:uuidv4(),
                  name,
                  email,
@@ -44,8 +44,8 @@ export class StudentsApi{
             const hash = await bcrypt.hash(password, 10);
             
     
-            newStudent.password = hash;
-            const user = await newStudent.save();
+            newUser.password = hash;
+            const user = await newUser.save();
             const token = jwt.sign({email:user.email,id:user._id,role:user.role},process.env.SECRET,{expiresIn: '1d'});
 
             return {

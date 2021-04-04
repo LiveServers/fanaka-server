@@ -6,7 +6,7 @@ import chalk from "chalk";
 import {ApolloServer} from "apollo-server-express";
 import resolvers from "./resolvers";
 import typeDefs from "./schema";
-import {StudentsApi,SessionApi} from "./datasources";
+import {UserApi,SessionApi} from "./datasources";
 
 (
     async ()=>{
@@ -27,7 +27,7 @@ const server = new ApolloServer({
     typeDefs,
     resolvers,
     dataSources:()=>({
-        studentsApi:new StudentsApi(),
+        userApi:new UserApi(),
         sessionApi:new SessionApi()
     }),
     context:async({req})=>{

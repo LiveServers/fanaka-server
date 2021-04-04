@@ -1,22 +1,20 @@
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken';
-import {UserInputError,AuthenticationError} from "apollo-server-express";
+import {UserInputError} from "apollo-server-express";
 import "dotenv/config";
-import StudentsModel from "../../models/Users/StudentModel";
-import getUser from "../../auth";
+import UserModel from "../../models/Users/UserModel";
+
 
  export class SessionApi{
     async signIn(args){
         const {email,password}=args;
         try{
-            const response = await StudentsModel.findOne({
+            const response = await UserModel.findOne({
                 email: email
             })
 
-            if (!response) {
-
-                throw new UserInputError('No such email registered')
-
+            if (!response){
+                throw new UserInputError('No such email registered');
             }
 
             const match = await bcrypt.compare(password, response.password);
@@ -41,7 +39,8 @@ import getUser from "../../auth";
 
         }
         catch(e){
-            console.log(e)
+            console.log(e);
+            throw new Error(e);
         }
     }
 }

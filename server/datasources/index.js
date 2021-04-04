@@ -1,2 +1,2 @@
-export {StudentsApi} from "./Students/Students";
+export {UserApi} from "./User/User";
 export {SessionApi} from "./Session/Session";

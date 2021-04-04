@@ -6,7 +6,7 @@ const typeDefs = gql `
         user
     }
     type Mutation {
-        studentSignUp(input:StudentInput!):StudentResult!
+        signUp(input:StudentInput!):StudentResult!
         signIn(email:String!,password:String!):StudentResult!
     }
     type Query {

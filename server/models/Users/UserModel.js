@@ -4,7 +4,7 @@ const {
     model
 } = mongoose;
 
-const StudentUserSchema = new Schema({
+const UserSchema = new Schema({
     _id: {
         type: String,
         required: true
@@ -45,6 +45,6 @@ const StudentUserSchema = new Schema({
     timestamps: true
 });
 
-const StudentsModel = model('StudentsModel', StudentUserSchema);
+const UserModel = model('User', UserSchema);
 
-export default StudentsModel;
+export default UserModel;
