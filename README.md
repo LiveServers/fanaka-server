@@ -1,3 +1,5 @@
+[![.github/workflows/node.js.yml](https://github.com/LiveServers/fanaka-server/actions/workflows/node.js.yml/badge.svg)](https://github.com/LiveServers/fanaka-server/actions/workflows/node.js.yml)
+
 # Fanaka Notes ManageMent System
 
 Fanaka is an online notes management system that aims to solve the problem of notes organization at Gretsa University. This system organizes notes in a predetermined manner making it easy to access, download and read all notes from all schools,units and certifications.
