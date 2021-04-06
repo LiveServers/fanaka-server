@@ -33,6 +33,14 @@ const UserSchema = new Schema({
         type:String,
         required:true
     },
+    token:{
+        type:String,
+        required:false
+    },
+    active:{
+        type:Number,
+        required:true
+    },
     createdAt: {
         type: Date,
         default: Date.now()
