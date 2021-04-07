@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken';
-import {UserInputError} from "apollo-server-express";
+import {UserInputError,AuthenticationError} from "apollo-server-express";
 import "dotenv/config";
 import UserModel from "../../models/Users/UserModel";
 
@@ -23,6 +23,9 @@ import UserModel from "../../models/Users/UserModel";
                 throw new UserInputError('Invalid credentials')
             }
 
+            if(response.active === 0){
+                throw new AuthenticationError("Please verify your email address to proceed");
+            }
             const token = jwt.sign({
                 email: response.email,
                 id: response._id,

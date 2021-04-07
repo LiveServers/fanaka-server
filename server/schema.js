@@ -8,6 +8,7 @@ const typeDefs = gql `
     type Mutation {
         signUp(input:StudentInput!):StudentResult!
         signIn(email:String!,password:String!):StudentResult!
+        verifyEmail(token:String!):String!
     }
     type Query {
         simpleQuery:String
