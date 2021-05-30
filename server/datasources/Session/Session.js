@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import {UserInputError,AuthenticationError} from "apollo-server-express";
 import "dotenv/config";
 import UserModel from "../../models/Users/UserModel";
+import Logger from "../../utils/logging";
 
 
  export class SessionApi{
@@ -42,8 +43,17 @@ import UserModel from "../../models/Users/UserModel";
 
         }
         catch(e){
-            console.log(e);
-            throw new Error(e);
+            Logger.log(
+                    'error',
+                    'Error: ',
+                    {
+                        fullError: e,
+                        request: 'signing in user/authenticating',
+                        technicalMessage: e.message,
+                        customerMessage: "Could not process your information",
+                    },
+                    );
+            throw new Error("Could not process your information");
         }
     }
 }
