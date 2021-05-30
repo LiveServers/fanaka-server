@@ -8,6 +8,7 @@ import UserModel from "../../models/Users/UserModel";
 import getUser from "../../auth";
 import sendEmail from "../../utils/sendEmail";
 import expireToken from "../../utils/tokenExpire";
+import Logger from "../../utils/logging";
 
 export class UserApi{
 
@@ -75,8 +76,17 @@ export class UserApi{
             };
         }
         catch(e){
-            console.log(e);
-            throw new Error(e);
+            Logger.log(
+                    'error',
+                    'Error: ',
+                    {
+                        fullError: e,
+                        request: 'creating user/sign up request',
+                        technicalMessage: e.message,
+                        customerMessage: "Could not process your information",
+                    },
+                    );
+            throw new Error("Could not process your information");
         }
     }
 
@@ -91,7 +101,16 @@ export class UserApi{
             return "Email successfully verified";
         }
         catch(e){
-            throw new Error(e);
+            Logger.log(
+                'error',
+                'Error: ', {
+                    fullError: e,
+                    request: 'verifying token/user email',
+                    technicalMessage: e.message,
+                    customerMessage: "Could not process your information",
+                },
+            );
+            throw new Error("Could not process your information");
         }
     }
 

@@ -1,5 +1,6 @@
 import nodeMailer from "nodemailer";
 import "dotenv/config";
+import Logger from "./logging";
 
 const transport = nodeMailer.createTransport({
     host: 'smtp.gmail.com',
@@ -26,7 +27,17 @@ const sendEmail = async (userEmail,from={})=>{
             html: from.message
         });
     }catch(e){
-        throw new Error(e);
+        Logger.log(
+                    'error',
+                    'Error: ',
+                    {
+                        fullError: e,
+                        request: 'sending email service',
+                        technicalMessage: e.message,
+                        customerMessage: "Could not process your information",
+                    },
+                    );
+        throw new Error("Could not process your information");
     }
 
 }
