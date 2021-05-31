@@ -10,6 +10,14 @@ const FilesSchema = new Schema({
         ref:"User",
         required:true
     },
+    year:{
+        type:String,
+        required:true
+    },
+    subYear:{
+        type:String,
+        required:true
+    },
     unit:{
         type:Schema.Types.String,
         ref:"Units",

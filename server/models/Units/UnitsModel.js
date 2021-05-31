@@ -17,6 +17,14 @@ const UnitsSchema = new Schema({
     unitName:{
         type:String,
         required:true
+    },
+    year:{
+        type:String,
+        required:true
+    },
+    subYear:{
+        type:String,
+        required:true
     }
 })
 
