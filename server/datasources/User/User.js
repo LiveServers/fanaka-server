@@ -3,11 +3,11 @@ import { v4 as uuidv4 } from 'uuid';
 import jwt from 'jsonwebtoken';
 import {UserInputError,ApolloError,AuthenticationError} from "apollo-server-express";
 import "dotenv/config";
-import shortId from "shortid";
+//import shortId from "shortid";
 import UserModel from "../../models/Users/UserModel";
 import getUser from "../../auth";
-import sendEmail from "../../utils/sendEmail";
-import expireToken from "../../utils/tokenExpire";
+// import sendEmail from "../../utils/sendEmail";
+// import expireToken from "../../utils/tokenExpire";
 import Logger from "../../utils/logging";
 
 export class UserApi{
@@ -15,12 +15,8 @@ export class UserApi{
     async signUp(args){
         const {
             input:{
-                name,
                 email,
-                password,
-                regNo,
-                school,
-                role
+                password
             }
         } = args;
         try{
@@ -35,18 +31,12 @@ export class UserApi{
                 throw new UserInputError('Password length must be greater than 8 characters long');
             }
             //verification token
-            const verificationToken = shortId.generate();
+            //const verificationToken = shortId.generate();
 
             const newUser = new UserModel({
                  _id:uuidv4(),
-                 name,
                  email,
                  password,
-                 regNo,
-                 school,
-                 role,
-                 token:verificationToken,
-                 active:0
             });
 
             const hash = await bcrypt.hash(password, 10);
@@ -57,16 +47,16 @@ export class UserApi{
 
 
             //before generating access token, first verify mail
-            const senderDetails = {
-                email:process.env.FANAKA_EMAIL,
-                message:`<p>Thank you for signing up with Fanaka,
-                Please click on this <a href="${process.env.FRONTEND_BASE_URL}/verify/${verificationToken}}">link</a> to verify your account.
-                This link will expire after ${process.env.EXPIRY_TIME} hour</p>`,
-                subject:"Email Verification",
-                name:process.env.FANAKA_EMAIL_NAME
-            }
-            await sendEmail(user.email,senderDetails);
-            await expireToken(user.email);
+            // const senderDetails = {
+            //     email:process.env.FANAKA_EMAIL,
+            //     message:`<p>Thank you for signing up with Fanaka,
+            //     Please click on this <a href="${process.env.FRONTEND_BASE_URL}/verify/${verificationToken}}">link</a> to verify your account.
+            //     This link will expire after ${process.env.EXPIRY_TIME} hour</p>`,
+            //     subject:"Email Verification",
+            //     name:process.env.FANAKA_EMAIL_NAME
+            // }
+            // await sendEmail(user.email,senderDetails);
+            // await expireToken(user.email);
             const token = jwt.sign({email:user.email,id:user._id,role:user.role},process.env.SECRET,{expiresIn: '1d'});
 
             return {
@@ -116,7 +106,6 @@ export class UserApi{
 
     async simp(req){
         const user = await getUser(req);
-        console.log(user);
         if(!user){
             throw new AuthenticationError("Please sign in to proceed");
         }
