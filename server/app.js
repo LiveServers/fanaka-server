@@ -5,10 +5,13 @@ import mongoose from "mongoose";
 import chalk from "chalk";
 import {ApolloServer} from "apollo-server-express";
 import helmet from "helmet";
+import expressJwt from 'express-jwt';
+import cookieParser from 'cookie-parser';
 import resolvers from "./resolvers";
 import typeDefs from "./schema";
-import {UserApi,SessionApi} from "./datasources";
+import {UserApi,SessionApi,SemesterApi} from "./datasources";
 import Logger from "./utils/logging";
+import UserModel from "./models/Users/UserModel";
 
 const app = express();
 
@@ -49,22 +52,43 @@ const options = {
                 callback(new Error('Not allowed by CORS'))
             }
         }
-    }
+    },
+    credentials:true
 };
 
 app.use(cors(options));
 
 app.use(helmet({ contentSecurityPolicy: (process.env.NODE_ENV === 'production') ? undefined : false }));
 
+app.use(cookieParser());
+app.use(expressJwt({
+    secret: process.env.SECRET,
+    algorithms: ["HS256"],
+    getToken: req => req.cookies.fanaka,
+    credentialsRequired: false
+}));
+
 const server = new ApolloServer({
     typeDefs,
     resolvers,
     dataSources:()=>({
         userApi:new UserApi(),
-        sessionApi:new SessionApi()
+        sessionApi:new SessionApi(),
+        semesterApi:new SemesterApi(),
     }),
-    context:async({req})=>{
-        return {req}
+    context:async({req,connection,res})=>{
+        if (connection) {
+            return connection.context;
+        }else{
+        let user = req.user || "";
+        let found;
+        if (user){
+            found = await UserModel.findOne({
+                _id: req.user.id
+            });
+        }
+        return {req,res,found};
+    }
     },
     formatError:(err)=>({
         message:err.message

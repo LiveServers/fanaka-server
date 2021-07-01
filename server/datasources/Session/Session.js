@@ -7,7 +7,7 @@ import Logger from "../../utils/logging";
 
 
  export class SessionApi{
-    async signIn(args){
+    async signIn(args,res){
         const {email,password}=args;
         try{
             const response = await UserModel.findOne({
@@ -24,9 +24,9 @@ import Logger from "../../utils/logging";
                 throw new UserInputError('Invalid credentials')
             }
 
-            if(response.active === 0){
-                throw new AuthenticationError("Please verify your email address to proceed");
-            }
+            // if(response.active === 0){
+            //     throw new AuthenticationError("Please verify your email address to proceed");
+            // }
             const token = jwt.sign({
                 email: response.email,
                 id: response._id,
@@ -35,10 +35,15 @@ import Logger from "../../utils/logging";
                 expiresIn: '1d'
             });
 
+            res.cookie("fanaka", token, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === "production", //on https
+                maxAge: 1000 * 60 * 60 * 24 * 1,
+                sameSite: process.env.NODE_ENV === "production" ? "none" : "strict"
+            })
             return {
                 status: true,
-                id: response._id,
-                token
+                id: response._id
             };
 
         }

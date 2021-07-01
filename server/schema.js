@@ -9,17 +9,32 @@ const typeDefs = gql `
         signUp(input:StudentInput!):StudentResult!
         signIn(email:String!,password:String!):StudentResult!
         verifyEmail(token:String!):String!
+        createSemester(input:SemesterInput!):SemesterResult!
     }
     type Query {
         simpleQuery:String
+        getAllSemesters(year:String!):[AllSemestersResults]!
+    }
+    input SemesterInput{
+        path:String!
+        semester:String!
+        year:String!
+    }
+    type SemesterResult{
+        _id:String!
+        year:String!
+        semester:String!
+        path:String!
+    }
+    type AllSemestersResults {
+        _id:String!
+        year:String!
+        semester:String!
+        path:String!
     }
     input StudentInput{
-        name:String!
         email:String!
         password:String!
-        regNo:String!
-        school:String!
-        role:Roles!
     }
 
     type StudentResult {

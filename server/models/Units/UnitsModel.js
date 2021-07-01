@@ -10,11 +10,20 @@ const UnitsSchema = new Schema({
         ref:"User",
         required:true
     },
+    semester:{
+        type:Schema.Types.String,
+        ref:"Semester",
+        required:true
+    },
     files:[{
         type:Schema.Types.String,
         ref:"Files"
     }],
     unitName:{
+        type:String,
+        required:true
+    },
+    year:{
         type:String,
         required:true
     }
