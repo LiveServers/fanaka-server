@@ -1,12 +1,10 @@
 import { createLogger, format } from 'winston';
 import DailyLog from 'winston-daily-rotate-file';
-import "dotenv/config";
-import  _ from 'lodash';
-import getTimeStamp from "./getTimestamp";
+import 'dotenv/config';
+import _ from 'lodash';
+import getTimeStamp from './getTimestamp';
 
-const {
-  combine, timestamp, label, printf,
-} = format;
+const { combine, timestamp, label, printf } = format;
 
 const logStringBuilder = (meta, message, level) => {
   let logString = `${getTimeStamp()}|message=${message}|level=${level}`;
@@ -31,7 +29,13 @@ const logStringBuilder = (meta, message, level) => {
     delete meta.technicalMessage;
   }
 
-  const selectableErrors = ['customerMessage', 'customError', 'message', 'actualError', 'systemError'];
+  const selectableErrors = [
+    'customerMessage',
+    'customError',
+    'message',
+    'actualError',
+    'systemError',
+  ];
   const pipeSpecial = (errors) => {
     _.forOwn(errors, (value, key) => {
       if (typeof value === 'object') {
@@ -48,11 +52,14 @@ const logStringBuilder = (meta, message, level) => {
   return logString;
 };
 
-const timezoned = () => new Date().toLocaleString('en-US', {
-  timeZone: 'Africa/Nairobi',
-});
+const timezoned = () =>
+  new Date().toLocaleString('en-US', {
+    timeZone: 'Africa/Nairobi',
+  });
 
-const logFormat = printf(({ level, message, ...meta }) => (`${logStringBuilder(meta, message, level)}`));
+const logFormat = printf(
+  ({ level, message, ...meta }) => `${logStringBuilder(meta, message, level)}`
+);
 const logFilePath = process.env.LOG_PATH;
 
 const logger = createLogger({
@@ -67,7 +74,7 @@ const logger = createLogger({
     timestamp({
       format: timezoned,
     }),
-    logFormat,
+    logFormat
   ),
 });
 
