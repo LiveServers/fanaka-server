@@ -44,12 +44,12 @@ export class SemesterApi {
 
   async getAllSemesters(args) {
     try {
-      const response = await SemesterModel.find({ year: args.year });
+      const response = await SemesterModel.find({ year: args.year }).populate('Units');
       return response;
     } catch (e) {
       Logger.log('error', 'Error: ', {
         fullError: e,
-        request: 'signing in user/authenticating',
+        request: 'getAllSemesters',
         technicalMessage: e.message,
         customerMessage: 'Could not process your information',
       });
