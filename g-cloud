@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "fanaka",
+  "private_key_id": "3b51b565664006f7d9e51b10ab2863b8f3d20b10",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCKvm5NAKyIsGL3\nwJ/N2rTNWwITpJeUBwiTfm1F9EJ+X5xjZSEadcnNJxOsgDyZAcCA10AMHids0ZSO\n7zh4IBXhe52MWIBd4W7sx6nXGIyt4OtT4UsFcEfruPNDj0htYXOJYTvAFVznIg5Z\nxeblkQo27wm4eAdkz/xpWJIgFzU4qFZU5S/e1DDKM315BRbhcy8cZmN9hDS59zKT\nHnJM+iugXal8klap+WFdqiqQuj4I7kXrIJ+zAOzJOlU2uKodZJvfrGuf+ceLUfzT\na7FCGp+6AfsB43swUWXgsyNYOmudeaPf9GKjKbF1yxk4ARB6Me3BHkUIzn/pJRcv\nhE80lrTNAgMBAAECggEAE5fW7crlkpwOLdym9KQpGkL65Rk+Sqo/nMyi09kttrj7\n1dGHPjxaFj2pepfVduoXbFp5cfykJqrmJtVDjTtCu8gANLyezCM0zf1YT8bovvlf\nYkYTmR4FGhXRTL4kRUYY0dLIZFTf/MgDbMwU0mCMJ7vUDJfuu17fz2SxphSA8JIn\n94IuRPnE1euLV+sToR9KlPIClNIX58wENHhnOofM1L32GB8Bs5QE3nhw1MeRTa2U\nAFDbznIdQGeCsfT2Gm1eUtdxylcpY7SX1Z967Rc//Ws9VfGQ3pvKa9Bh5y705vB8\nHYQ6neqtTpXsdr9V6L5K9fqV5TusSdJVwJltN+heZQKBgQDBcpqcBepcv/j/EZzG\ndiBI4jhF+Zddvq+mLvNYnFIX65fJ/aywbjvnvFwhNbrBoiE5SbQaEmawYj20XpTB\nbYed1+ZLT30+x9DRV4fqkT2vwKArtBgudsl1iLfA0Ho61jL5QMtRhgaCW2/KLQJ0\nenHaXjdkhevUaqxICd/QEhrn+wKBgQC3m4DhtTrhIdAFNaJb3YJtuwj644eU2Qmk\nxkqyfV9uDwke62Ev4nWEZ3w/0DaOX85btytLa7elzY8zIQIUBUQ6oRN5zYOmh8IE\n8lMDK0jW80pVJii3E0ypPSgQlWQwSI0zJ68pj9ac6KTbdTegq+exrl90HSlF9yqD\ncQNZrD7T1wKBgQCsuTs7HD0J247jkEI/IbHp4bMFJ7nzRhNnenxlHg5etUiuXgYW\n8hYi75gDPwolYjHwCNL6hHuT+ePGbLy9iKKSWPeTPsJBj//vKwx8cHp3trJM01zT\n/9QZUZ1gV8ULS73vt97SR60AL8w85LtQbRPDOmSTKNBMtYJmQArKqZ/EiQKBgGAp\nXXLZDCFlKCHSWVprxSfbUXS1PglDMr3N7MlWyGhID6rV9Gyz2oCiAn0Ze7lNjDKU\n2GQD4odABcPtgb0ilP1v51dfv5e0enVExR1fyiJqAYBfH+vie8AXe6hT1clD9k/Y\ndPD7mJdNcSpPVfcckZiJjwytSTSPowB8bBjHEZC5AoGAXOeHUrskVWvdtH0pXsLw\nM6A/e6ZX87bvCL3oAfwyieU6NH9AUog8zvT+e/hY/PBbfHBSpPM2g+4eaeTnQTpf\nTY8xPQg62uT5HhmHGUh5XI0uhuOp3TfUjGDei2kS9KKp3yE1dRIKNmHyB3DJhjPo\nHaLVXuf+WbHB8DL+8mNR/Yw=\n-----END PRIVATE KEY-----\n",
+  "client_email": "fanaka-upload@fanaka.iam.gserviceaccount.com",
+  "client_id": "105079058889985667014",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/fanaka-upload%40fanaka.iam.gserviceaccount.com"
+}
